@@ -425,6 +425,10 @@ defmodule Tortoise311.Connection do
           "[Tortoise311] Connection refused: #{inspect(reason)}, #{inspect(summarize_state(state))}"
         )
 
+        # connection refused callback
+        %{handler: handler} = state
+        apply(handler.module, :connection, [:refused, handler.state])
+
         Process.send_after(self(), :connect, timeout)
         {:noreply, state}
 
