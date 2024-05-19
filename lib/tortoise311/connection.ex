@@ -425,7 +425,7 @@ defmodule Tortoise311.Connection do
           "[Tortoise311] Connection refused: #{inspect(reason)}, #{inspect(summarize_state(state))}"
         )
 
-        # connection refused callback
+        # connection refused callback , BH
         %{handler: handler} = state
         apply(handler.module, :connection, [:refused, handler.state])
 
