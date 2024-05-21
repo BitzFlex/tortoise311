@@ -517,6 +517,13 @@ defmodule Tortoise311.Connection do
     end
   end
 
+
+  def handle_info(msg, state) do
+    Logger.warning("undefined handle_info : #{inspect msg} , #{inspect state}")
+    {:noreply, state}
+  end
+
+
   @impl GenServer
   def handle_call(:subscriptions, _from, state) do
     {:reply, state.subscriptions, state}
